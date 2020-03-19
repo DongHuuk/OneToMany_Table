@@ -1,22 +1,40 @@
 package com.back.example.springboot.jpa.dongexample.Inheritance;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Parent {
 
     @Id
+    @GeneratedValue
     @Column(name = "PARENT_ID")
-    private String id;
+    private Long id;
 
+    @OneToMany
+    @JoinTable(
+            name = "PARENT_CHILD",
+            joinColumns = @JoinColumn(name = "PARENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CHILD_ID")
+    )
+    private List<Child> child = new ArrayList<>();
     private String name;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Child> getChild() {
+        return child;
+    }
+
+    public void addChild(Child child) {
+        this.child.add(child);
     }
 
     public String getName() {

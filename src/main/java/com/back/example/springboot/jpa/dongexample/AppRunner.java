@@ -29,20 +29,13 @@ public class AppRunner implements ApplicationRunner {
     }
 
     private void save() {
-
-        Parent parent = new Parent();
-        parent.setName("parent_1");
-        parent.setId("Parent_1");
-        entityManager.persist(parent);
-
         Child child = new Child();
-        child.setParent(parent);
-        child.setName("child_1");
+        child.setName("child");
         entityManager.persist(child);
 
-        GrandChild grandChild = new GrandChild();
-        grandChild.setChild(child);
-        grandChild.setName("grandChild_1");
-        entityManager.persist(grandChild);
+        Parent parent = new Parent();
+        parent.setName("parent");
+        parent.addChild(child);
+        entityManager.persist(parent);
     }
 }
