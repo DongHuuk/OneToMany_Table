@@ -25,7 +25,7 @@ public class AppRunner implements ApplicationRunner {
     }
 
     private void find() {
-
+        System.out.println("git test");
     }
 
     private void save() {
