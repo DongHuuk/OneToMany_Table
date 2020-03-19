@@ -9,7 +9,22 @@ public class Child {
     @Column(name = "CHILD_ID")
     private Long id;
 
+    @ManyToOne
+    @JoinTable(
+            name = "PARENT_CHILD",
+            joinColumns = @JoinColumn(name = "CHILD_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PARENT_ID")
+    )
+    private Parent parent;
     private String name;
+
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void addParent(Parent parent) {
+        this.parent = parent;
+    }
 
     public Long getId() {
         return id;

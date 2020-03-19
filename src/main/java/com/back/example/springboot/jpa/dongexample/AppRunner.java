@@ -31,11 +31,12 @@ public class AppRunner implements ApplicationRunner {
     private void save() {
         Child child = new Child();
         child.setName("child");
-        entityManager.persist(child);
 
         Parent parent = new Parent();
         parent.setName("parent");
         parent.addChild(child);
         entityManager.persist(parent);
+        child.addParent(parent);
+        entityManager.persist(child);
     }
 }
